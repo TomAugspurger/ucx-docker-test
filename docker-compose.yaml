@@ -1,0 +1,22 @@
+version: "3"
+services:
+    server:
+        build: .
+        network_mode: "host"
+        command:
+            /ucx/src/tools/perf/ucx_perftest -c 0 -p 8000
+        image: ucx:latest
+        expose:
+            - "8000"
+    client:
+        build: .
+        network_mode: "host"
+        depends_on:
+            - "server"
+        command:
+            /ucx/src/tools/perf/ucx_perftest localhost -p 8000 -t tag_lat -c 0
+        image:
+            ucx:latest
+        expose:
+            - "80"
+            - "8000"
