@@ -4,7 +4,7 @@ ucx-py:
 ucx:
 	git clone https://github.com/openucx/ucx
 
-docker-images:
+docker-images: Dockerfile
 	docker build -t ucx .
 
 test:

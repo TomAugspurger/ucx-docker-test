@@ -47,3 +47,12 @@ RUN rm -Rf openmpi-${MPI_VERSION}*
 # OpenMPI expects this program to exist, even if it's not used. Default is
 # "ssh : rsh", but that's not installed.
 RUN echo 'plm_rsh_agent = false' >> /mnt/0/openmpi-mca-params.conf
+
+COPY ucx-py /ucx-py
+
+RUN conda install -y Cython pybind11 dask distributed ipython nomkl && conda clean -a
+# So we can find UCX when compiling
+ENV CPATH /ucx/install/include
+
+RUN cd /ucx-py/pybind \
+ && python setup.py build_ext -i
