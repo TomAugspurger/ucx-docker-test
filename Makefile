@@ -5,7 +5,7 @@ ucx:
 	git clone https://github.com/openucx/ucx
 
 docker-images: Dockerfile
-	docker build -t ucx .
+	nvidia-docker build -t ucx .
 
 test:
 	docker-compose-up
