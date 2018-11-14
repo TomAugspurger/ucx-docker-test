@@ -9,3 +9,6 @@ docker-images: Dockerfile
 
 test:
 	docker-compose-up
+
+dev:
+	docker run -v $$(pwd)/ucx-py:/ucx-py --name=ucx-dev --rm -it ucx bash
