@@ -1,4 +1,4 @@
-# Anaconda license placeholder
+# Copyright (c) 2019, Anaconda, Inc. All rights reserved.
 
 import asyncio
 import sys
@@ -11,7 +11,7 @@ server_msg = b'\\\//'
 async def connect(host):
     print("3. Starting connect")
     ep = ucp.get_endpoint(host, 13337)
-    print("4. Client send")  
+    print("4. Client send")
     await ep.send_obj(client_msg, sys.getsizeof(client_msg))
     resp = await ep.recv_future()
     r_msg = ucp.get_obj_from_msg(resp)
@@ -45,4 +45,4 @@ if __name__ == '__main__':
         host = sys.argv[1].encode()
     else:
         host = b"192.168.40.19"
-    asyncio.run(main(host)) 
+    asyncio.run(main(host))
